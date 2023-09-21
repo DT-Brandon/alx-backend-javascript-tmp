@@ -10,12 +10,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
-  try {
+    const msg = 'This is the list of our students\n';
+    try {
     const database = args[0];
     const result = await countStudents(database);
-    res.send(`<strong>This is the list of our students\n${result}</strong>`);
+    res.send(`<strong>${msg}${result}</strong>`);
   } catch (error) {
-    res.status(500).send('Internal Server Error');
+    res.send(`${msg}${error.message}`);
   }
 });
 
